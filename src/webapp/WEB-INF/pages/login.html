@@ -8,10 +8,26 @@
 <body>
 <div>
     <form method="post" action="/login">
-        <input name="j_username"/>
-        <input name="j_password"/>
-        <input type="submit"/>
+
+        <label for="username">Enter name:</label>
+        <input name="username" id="username">
+        <br/>
+        <br/>
+        <label for="userpassword">Enter password:</label>
+        <input type="password" name="password" id="userpassword">
+        <br/>
+        <br/>
+        <input type="submit" value="Login">
     </form>
+    <br/>
+
+    <td>
+        <form th:action="@{/new}">
+            <button>Create new user</button>
+        </form>
+    </td>
+
+
 </div>
 </body>
 </html>

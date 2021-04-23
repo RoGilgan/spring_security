@@ -11,5 +11,21 @@
         <h1 th:text="${msg}"></h1>
     </th:block>
 </div>
+
+<td>
+    <form th:action="@{/new}">
+        <button>Create new user</button>
+    </form>
+</td>
+
+<br/>
+
+<td>
+
+    <form th:action="@{/login}">
+        <button>Log in</button>
+    </form>
+    <br/>
+</td>
 </body>
 </html>
