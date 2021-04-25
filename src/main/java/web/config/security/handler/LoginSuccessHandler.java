@@ -17,7 +17,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
                                         HttpServletResponse httpServletResponse,
                                         Authentication authentication) throws IOException {
 
-        for (GrantedAuthority auth: authentication.getAuthorities()) {
+        for (GrantedAuthority auth : authentication.getAuthorities()) {
             if ("ROLE_ADMIN".equals(auth.getAuthority())) {
                 httpServletResponse.sendRedirect("/admin");
             } else {

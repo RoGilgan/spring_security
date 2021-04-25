@@ -3,37 +3,33 @@ package web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import web.model.Role;
 import web.model.User;
-import web.service.RoleService;
 import web.service.UserService;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
-    private UserService userService;
-    private RoleService roleService;
+    private final UserService userService;
 
     @Autowired
-    public AdminController(UserService userService, RoleService roleService) {
+    public AdminController(UserService userService) {
         this.userService = userService;
-        this.roleService = roleService;
     }
 
     @GetMapping
     public String showAll(Model model) {
         model.addAttribute("users", userService.showAllUsers());
-        return "index";
+        return "allUsers";
     }
 
     @GetMapping("/{id}/edit")
@@ -43,17 +39,21 @@ public class AdminController {
     }
 
     @PatchMapping("/{id}")
-    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") long id,
+    public String updateUser(@ModelAttribute("user") User user,
                              @RequestParam(value = "selectRoles[]") String[] arr) {
-        Set<Role> setOfRoles = new HashSet<>();
-
-        for (String s : arr) {
-            setOfRoles.add(roleService.getRoleById(Integer.valueOf(s)));
-        }
-
-        user.setRoles(setOfRoles);
-        userService.updateUser(user);
+        userService.updateUser(user, arr);
         return "redirect:/admin";
     }
 
+    @GetMapping("/{id}")
+    public String details(Principal principal, Model model) {
+        model.addAttribute("user", userService.getUserByLogin(principal.getName()));
+        return "user";
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") Long id) {
+        userService.deleteUser(id);
+        return "redirect:/admin";
+    }
 }

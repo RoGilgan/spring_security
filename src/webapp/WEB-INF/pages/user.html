@@ -11,9 +11,16 @@
 <p th:text="${'Email: ' + user.getEmail()}">VALUE</p>
 <p th:text="${'Age: ' + user.getAge()}">VALUE</p>
 
+Roles:
+<th:block th:each="role : ${user.getAuthorities()}">
+    <p th:text="${role}"></p>
+</th:block>
+<hr/>
+<br/>
 
-
-
+<form th:action="@{/logout}" method="POST">
+    <input type="submit" value="Logout"/>
+</form>
 
 </body>
 </html>

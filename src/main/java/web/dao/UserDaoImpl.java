@@ -41,17 +41,14 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User updateUser(User updateUser) {
-        updateUser.setPassword(passwordEncoder.encode(updateUser.getPassword()));
         entityManager.merge(updateUser);
         return updateUser;
     }
 
     @Override
-    public void deleteUser(int id) {
+    public void deleteUser(Long id) {
         entityManager.createQuery("DELETE FROM User u WHERE u.id=: id")
                 .setParameter("id", id).executeUpdate();
-
-//        entityManager.remove(entityManager.find(User.class, id));
     }
 
     @Override

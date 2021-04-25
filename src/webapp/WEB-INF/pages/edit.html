@@ -30,18 +30,20 @@
     <br/>
     <br>
     <label for="selectRoles">Edit user's ROLE</label>
+    <br/>
     <select name="selectRoles[]" required multiple id="selectRoles">
         <option value="1">ADMIN</option>
         <option value="2">USER</option>
     </select>
-
+    <br/>
     <br/>
     <input type="submit" value="Update!">
+    <br/>
+    <br/>
 </form>
-
+<hr/>
 <form th:action="@{/logout}" method="POST">
     <input type="submit" value="Logout"/>
 </form>
-
 </body>
 </html>

@@ -28,7 +28,5 @@ public class RoleDaoImpl implements RoleDao {
     public void deleteRole(int id) {
         entityManager.createQuery("DELETE FROM Role r WHERE r.id =: id")
                 .setParameter("id", id).executeUpdate();
-
-//        entityManager.remove(entityManager.find(Role.class, id));
     }
 }

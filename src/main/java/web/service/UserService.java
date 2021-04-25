@@ -12,9 +12,9 @@ public interface UserService {
 
     User saveUser(User user);
 
-    User updateUser(User updateUser);
+    User updateUser(User updateUser, String[] arr);
 
-    void deleteUser(int id);
+    void deleteUser(Long id);
 
     User getUserByLogin(String login);
 }

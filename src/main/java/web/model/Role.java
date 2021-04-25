@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import java.util.Set;
 
 @Entity
-@Table (name = "roles")
+@Table(name = "roles")
 public class Role implements GrantedAuthority {
 
     @Id
@@ -25,7 +25,8 @@ public class Role implements GrantedAuthority {
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
 
-    public Role() {}
+    public Role() {
+    }
 
     public int getId() {
         return id;
