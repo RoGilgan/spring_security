@@ -22,6 +22,11 @@ public class UserController {
         this.userService = userService;
     }
 
+    @GetMapping
+    public String hello() {
+        return "hello";
+    }
+
     @GetMapping("login")
     public String loginPage() {
         return "login";
