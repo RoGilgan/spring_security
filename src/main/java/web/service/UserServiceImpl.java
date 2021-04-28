@@ -48,11 +48,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public User updateUser(User updateUser, String[] arr) {
-        Set<Role> setOfRoles = new HashSet<>();
-
-        for (String s : arr) {
-            setOfRoles.add(roleService.getRoleById(Integer.parseInt(s)));
-        }
+        Set<Role> setOfRoles = new HashSet<>(roleService.getRoles(arr));
         updateUser.setRoles(setOfRoles);
         return userDao.updateUser(updateUser);
     }

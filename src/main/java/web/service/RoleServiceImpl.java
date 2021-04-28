@@ -5,6 +5,8 @@ import org.springframework.transaction.annotation.Transactional;
 import web.dao.RoleDao;
 import web.model.Role;
 
+import java.util.List;
+
 @Service
 public class RoleServiceImpl implements RoleService {
 
@@ -30,5 +32,10 @@ public class RoleServiceImpl implements RoleService {
     @Transactional
     public void deleteRole(int id) {
         roleDao.deleteRole(id);
+    }
+
+    @Override
+    public List<Role> getRoles(String[] arr) {
+        return roleDao.getRoles(arr);
     }
 }
