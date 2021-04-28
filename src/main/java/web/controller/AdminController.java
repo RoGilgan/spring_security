@@ -46,8 +46,8 @@ public class AdminController {
     }
 
     @GetMapping("/{id}")
-    public String details(Principal principal, Model model) {
-        model.addAttribute("user", userService.getUserByLogin(principal.getName()));
+    public String details(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("user", userService.showUser(id));
         return "user";
     }
 
