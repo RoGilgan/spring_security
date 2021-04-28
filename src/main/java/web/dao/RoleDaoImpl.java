@@ -36,7 +36,7 @@ public class RoleDaoImpl implements RoleDao {
 
     @Override
     public List<Role> getRoles(String[] arr) {
-        List<Long> listOfId = Arrays.stream(arr).mapToLong(Long::parseLong)
+        List<Integer> listOfId = Arrays.stream(arr).mapToInt(Integer::parseInt)
                 .boxed().collect(Collectors.toList());
 
         return entityManager.createQuery("SELECT r FROM Role r WHERE r.id IN (:id)", Role.class)
